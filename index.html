@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial;
+            font-size: 15px;
+            background-image: url('https://github.com/MaryiCS/IMAGENES/blob/main/Fondo-bloques.png?raw=true');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .card {
+            background-color: #eef5f600;
+            border: 2px solid #189AB4;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            text-align: center;
+            color: #05445E;
+            max-width: 500px;
+        }
+
+        .footer {
+            text-align: center;
+            color: #05445E;
+        }
+
+        .title {
+            color: #055b80;
+            margin-bottom: 20px;
+            font-size: 50px;
+        }
+
+        .idea {
+            color: #ec0808;
+            font-size: 50px;
+        }
+
+        .timer {
+            color: #f50606;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Slide 1 -->
+        <div id="slide-1" class="slide active">
+            <div class="title">CREACIÓN DE PROTOTIPOS CON BLOQUES</div>
+            <button onclick="nextSlide()">Siguiente</button>
+        </div>
+
+        <!-- Slide 2 -->
+        <div id="slide-2" class="slide">
+            <div class="title">CREACIÓN DE PROTOTIPOS CON BLOQUES</div>
+            <div id="card" class="card">
+                <div id="idea" class="idea"></div>
+                <div id="challenge"></div>
+                <button onclick="generateIdea()">Generar Idea</button>
+                <div id="timer" class="timer"></div>
+            </div>
+            <button onclick="prevSlide()">Anterior</button>
+            <button onclick="nextSlide()">Siguiente</button>
+        </div>
+
+
+    </div>
+
+    <div class="footer">
+        Creado por Maryi Adriana Cadrazco Suárez <br>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+            <img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" />
+        </a><br />
+        Esta obra está bajo una 
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+            Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional
+        </a>.
+    </div>
+
+    <script>
+        let slides = Array.from(document.getElementsByClassName('slide'));
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function prevSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        let ideas = [
+
+            ["Construye un rascacielos", "¿Cómo construirías tu empresa desde cero?"],
+            ["Crea una cadena de montaje", "¿Cómo optimizarías los procesos de producción en tu empresa?"],
+            ["Diseña un laberinto", "¿Cómo navegarías a través de decisiones complicadas en tu negocio?"],
+            ["Monta un rompecabezas", "¿Cómo resolverías problemas complicados en tu empresa?"],
+            ["Construye un parque de atracciones", "¿Cómo mantendrías a tu equipo motivado y comprometido?"],
+            ["Crea un estadio", "¿Cómo manejarías grandes eventos para tu empresa?"],
+            ["Diseña una oficina", "¿Cómo crearías un ambiente de trabajo cómodo y eficiente?"],
+            ["Construye un puente", "¿Cómo te adaptarías a cambios inesperados en tu negocio?"],
+            ["Crea un zoológico", "¿Cómo manejarías una gran diversidad en tu empresa?"],
+            ["Construye un árbol genealógico", "¿Cómo te asegurarías de que todos en tu empresa se sientan parte de la misma familia?"],
+            ["Diseña un mapa del tesoro", "¿Cómo encontrarías oportunidades ocultas para tu empresa?"],
+            ["Monta un molino de viento", "¿Cómo incorporarías energías renovables en tu negocio?"],
+            ["Crea un satélite", "¿Cómo te mantendrías informado sobre los últimos avances en tu industria?"],
+            ["Construye una casa en el árbol", "¿Cómo mantendrías un ambiente de trabajo divertido y creativo?"],
+            ["Diseña un barco", "¿Cómo mantendrías a flote tu negocio en tiempos difíciles?"],
+            ["Monta una montaña rusa", "¿Cómo te prepararías para los altibajos en tu negocio?"],
+            ["Crea un globo aerostático", "¿Cómo llevarías tu empresa a nuevas alturas?"],
+            ["Construye un fuerte", "¿Cómo protegerías tu empresa de las amenazas?"],
+            ["Diseña una máquina del tiempo", "¿Cómo planeas para el futuro de tu empresa?"],
+            ["Monta un submarino", "¿Cómo explorarías nuevas oportunidades para tu negocio?"],
+            ["Crea una casa de muñecas", "¿Cómo te asegurarías de que cada parte de tu empresa funcione en armonía?"],
+            ["Construye un bosque", "¿Cómo promoverías la sostenibilidad en tu negocio?"],
+            ["Diseña una torre de agua", "¿Cómo te asegurarías de que tu empresa siempre tenga los recursos que necesita?"],
+            ["Monta una cápsula del tiempo", "¿Cómo preservarías la historia y la cultura de tu empresa?"],
+            ["Crea una estación de tren", "¿Cómo manejarías la logística en tu negocio?"],
+            ["Construye una granja de viento", "¿Cómo incorporarías energías renovables en tu negocio?"],
+            ["Diseña una montaña rusa", "¿Cómo te prepararías para los altibajos en tu negocio?"],
+            ["Monta un parque de bomberos", "¿Cómo manejarías una crisis en tu empresa?"],
+            ["Crea una selva", "¿Cómo manejarías la complejidad y la diversidad en tu empresa?"],
+            ["Construye un laberinto", "¿Cómo navegarías a través de decisiones complicadas en tu negocio?"],
+            ["Diseña una ciudad", "¿Cómo organizarías todas las diferentes partes de tu empresa?"],
+            ["Construye un puente colgante", "¿Cómo conectarías equipos o departamentos en tu empresa?"],
+            ["Crea una mina de oro", "¿Cómo maximizarías los ingresos en tu empresa?"],
+            ["Construye un estudio de música", "¿Cómo fomentarías la creatividad en tu empresa?"],
+            ["Diseña una red de metro", "¿Cómo mejoraría la eficiencia en tu empresa?"],
+            ["Monta un castillo de arena", "¿Cómo protegerías tu empresa de los cambios en el mercado?"],
+            ["Crea un zoológico", "¿Cómo manejarías una gran diversidad en tu empresa?"],
+            ["Construye una pirámide", "¿Cómo establecerías una jerarquía eficaz en tu empresa?"],
+            ["Diseña una ciudad", "¿Cómo organizarías todas las diferentes partes de tu empresa?"],
+            ["Monta un iceberg", "¿Cómo manejarías los problemas ocultos en tu empresa?"],
+            ["Crea una caja de música", "¿Cómo fomentarías la creatividad en tu empresa?"],
+            ["Construye un aeropuerto", "¿Cómo manejarías la logística de un negocio a gran escala?"],
+            ["Diseña una nave espacial", "¿Cómo te prepararías para los desafíos desconocidos en tu empresa?"],
+            ["Monta un iglú", "¿Cómo mantendrías tu empresa funcionando en un ambiente desafiante?"],
+            ["Crea una isla desierta", "¿Cómo sobrevivirías con recursos limitados en tu empresa?"],
+            ["Construye un bosque", "¿Cómo promoverías la sostenibilidad en tu negocio?"],
+            ["Diseña un faro", "¿Cómo guiarías a tu equipo a través de tiempos difíciles?"],
+            ["Monta un rascacielos", "¿Cómo construirías tu empresa desde cero?"],
+            ["Crea un estadio", "¿Cómo manejarías grandes eventos para tu empresa?"],
+            ["Construye una casa en el árbol", "¿Cómo mantendrías un ambiente de trabajo divertido y creativo?"],
+            ["Diseña un restaurante", "¿Cómo te asegurarías de que tu negocio satisfaga a sus clientes?"],
+            ["Monta un castillo", "¿Cómo protegerías tu empresa de la competencia?"],
+            ["Crea un supermercado", "¿Cómo satisfacerías una amplia gama de necesidades de los clientes?"],
+            ["Construye un edificio de oficinas", "¿Cómo crearías un espacio de trabajo eficiente y productivo?"],
+            ["Diseña un estadio", "¿Cómo manejarías grandes eventos para tu empresa?"],
+            ["Monta un oasis", "¿Cómo crearías un ambiente de trabajo relajante y productivo?"],
+            ["Crea un arco iris", "¿Cómo promoverías la diversidad y la inclusión en tu empresa?"],
+            ["Construye una planta de energía solar", "¿Cómo implementarías soluciones sostenibles en tu empresa?"],
+            ["Diseña un banco", "¿Cómo manejarías las finanzas de tu empresa?"],
+            ["Monta un molino de viento", "¿Cómo incorporarías energías renovables en tu negocio?"],
+            ["Crea un volcán", "¿Cómo manejarías una crisis en tu empresa?"],
+            ["Construye una cápsula del tiempo", "¿Cómo preservarías la historia y la cultura de tu empresa?"],
+            ["Diseña un mapa del tesoro", "¿Cómo encontrarías oportunidades ocultas para tu empresa?"],
+            ["Monta un robot", "¿Cómo automatizarías tareas en tu empresa?"],
+            ["Crea un reloj de arena", "¿Cómo manejarías el tiempo y los plazos en tu empresa?"],
+            ["Construye un puente elevado", "¿Cómo te adaptarías a cambios inesperados en tu negocio?"],
+            ["Diseña un barco", "¿Cómo mantendrías a flote tu negocio en tiempos difíciles?"],
+            ["Monta un globo aerostático", "¿Cómo llevarías tu empresa a nuevas alturas?"],
+            ["Crea un laberinto", "¿Cómo navegarías a través de decisiones complicadas en tu negocio?"],
+            ["Construye un faro", "¿Cómo guiarías a tu equipo a través de tiempos difíciles?"],
+            ["Diseña un volcán", "¿Cómo manejarías una crisis en tu empresa?"],
+            ["Monta un oasis", "¿Cómo crearías un ambiente de trabajo relajante y productivo?"],
+            ["Crea una montaña", "¿Cómo superarías los grandes desafíos en tu empresa?"],
+            ["Construye una cadena de montaje", "¿Cómo optimizarías los procesos de producción en tu empresa?"],
+            ["Diseña una ciudad", "¿Cómo organizarías todas las diferentes partes de tu empresa?"],
+            ["Monta un restaurante", "¿Cómo te asegurarías de que tu negocio satisfaga a sus clientes?"],
+            ["Crea una tienda", "¿Cómo satisfacerías las necesidades de los clientes?"],
+            ["Construye un hospital", "¿Cómo te ocuparías del bienestar de tus empleados?"],
+            ["Diseña un jardín", "¿Cómo promoverías un ambiente de trabajo saludable y relajante?"],
+            ["Monta un invernadero", "¿Cómo te adaptarías a un entorno en constante cambio?"],
+            ["Crea una fábrica", "¿Cómo mejorarías la eficiencia y productividad en tu empresa?"],
+            ["Construye una estación de bomberos", "¿Cómo prepararías a tu empresa para emergencias?"],
+            ["Diseña una biblioteca", "¿Cómo fomentarías la educación y el aprendizaje en tu empresa?"],
+            ["Monta un parque acuático", "¿Cómo mantendrías a tu equipo motivado y comprometido?"],
+            ["Crea un teatro", "¿Cómo fomentarías la expresión creativa en tu empresa?"],
+            ["Construye un parque temático", "¿Cómo mantendrías un ambiente de trabajo divertido y creativo?"],
+            ["Diseña un hotel", "¿Cómo te asegurarías de que tus empleados se sientan valorados y cuidados?"],
+            ["Monta un museo", "¿Cómo preservarías y mostrarías los logros de tu empresa?"],
+            ["Crea un acuario", "¿Cómo manejarías un ambiente diverso y cambiante en tu empresa?"],
+            ["Construye un zoo", "¿Cómo manejarías una gran diversidad en tu empresa?"],
+            ["Diseña una escuela", "¿Cómo fomentarías la educación y el crecimiento en tu empresa?"],
+            ["Monta una orquesta", "¿Cómo coordinarías a un gran equipo para trabajar en armonía?"],
+            ["Crea un parque", "¿Cómo promoverías el equilibrio entre el trabajo y la vida personal en tu empresa?"],
+            ["Construye un avión", "¿Cómo llevarías tu empresa a nuevos destinos?"],
+            ["Diseña un tren", "¿Cómo mantendrías tu empresa en movimiento y en la dirección correcta?"],
+            ["Monta un cohete", "¿Cómo lanzarías nuevos productos o servicios en tu empresa?"],
+            ["Crea un autobús", "¿Cómo mantendrías a todos en tu empresa en el mismo camino?"],
+            ["Construye un telescopio", "¿Cómo te prepararías para el futuro de tu empresa?"],
+            ["Diseña una pista de hielo", "¿Cómo mantendrías a tu equipo equilibrado y enfocado en un ambiente resbaladizo?"],
+            ["Monta un carro de golf", "¿Cómo mantendrías a tu empresa en movimiento a un ritmo constante?"],
+            ["Crea una catedral", "¿Cómo construirías una empresa que perdure en el tiempo?"],
+            ["Construye un aeropuerto", "¿Cómo manejarías la logística de un negocio a gran escala?"],
+            ["Diseña una isla", "¿Cómo te asegurarías de que tu empresa pueda funcionar de manera autónoma y autosuficiente?"],
+            ["Monta una montaña rusa", "¿Cómo te prepararías para los altibajos en tu negocio?"],
+        ];
+
+        let timer;
+        let timeLeft = 600;
+
+        function startTimer() {
+            clearInterval(timer);
+
+            timer = setInterval(function () {
+                timeLeft--;
+
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                
+                document.getElementById('timer').innerText = ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    document.getElementById('timer').innerText = "Tiempo agotado!";
+                }
+            }, 1000);
+        }
+
+        function generateIdea() {
+            let index = Math.floor(Math.random() * ideas.length);
+            document.getElementById('idea').innerHTML = "<span class='idea'>Idea " + (index + 1) + ":</span> " + ideas[index][0];
+            document.getElementById('challenge').innerText = "Reto: " + ideas[index][1];
+            startTimer();
+        }
+    </script>
+</body>
+</html>
